@@ -2,7 +2,8 @@ name: 自动群发邮件
 
 on:
   schedule:
-    - cron: "0 0 */3 * *"  # 每周一 0 点执行一次
+    # 每月 1 号 17:00 UTC 运行 ≈ 每月 2 号 北京时间 01:00 运行
+    - cron: "0 17 1 * *"
   workflow_dispatch:  # 支持手动触发
 
 jobs:
@@ -12,11 +13,11 @@ jobs:
     steps:
       # Step 1: 检出代码仓库
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Step 2: 设置 Python 环境
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.9'  # 可根据需要调整为具体的版本
 
